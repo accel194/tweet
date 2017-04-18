@@ -4,5 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-         mount_uploader :image, UserImageUploader
+  mount_uploader :image, UserImageUploader
+
+  validates :name, presence: true
+  validates :image, noimage: false
+  validates :profile, presence: true       
 end
