@@ -33,6 +33,11 @@
       <%= f.file_field :image_cache %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :profile %><br/>
+      <%= f.text_area :profile, autofocus: true, class: 'form-control' %>
+    </div>
+    
     <div class="actions">
       <%= f.submit "Sign up", class: 'btn btn-primary' %>
     </div>
