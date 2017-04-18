@@ -1,0 +1,37 @@
+<div class="wrapper tweet_wrapper">
+  <div class="input">
+    <%= form_for @input_content do |f| %>
+      <div class="form-group">
+        <%= f.label :content %><br/>
+        <%= f.text_area :content, class: 'form-control', rows: 3 %>
+      </div>
+      <div class="actions clearfix">
+        <div class="alert">
+          <% if flash[:alert] %>
+            <% flash[:alert].each do |content| %>
+              <p class="alert"><%= content %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="post">
+          <%= f.submit 'Post', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="tweet">
+    <% @tweet.each do |t| %>
+      <div class="per <%= 'mine' if t.user.id == current_user.id %>">
+        <p class="icon">
+          <% if t.user.image? %>
+            <%= image_tag t.user.image.url %>
+          <% else %>
+            NO IMAGE
+          <% end %>
+        </p>
+        <%= simple_format t.content, class: 'content' %>
+      </div>
+    <% end %>
+  </div>
+</div>
