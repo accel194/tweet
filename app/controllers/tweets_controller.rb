@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.includes(:user).not_reply.order('updated_at DESC')
     @users = User.all
     @tweets = Tweet.page(params[:page]).per(3)
-
     if params[:reply_tweet_id]
       @reply_tweet =Tweet.find(params[:reply_tweet_id])
     end
