@@ -1,7 +1,12 @@
 class TweetsController < ApplicationController
   def index
     @input_content = params[:id] ? Tweet.find(params[:id]) : Tweet.new
-    @tweet = Tweet.includes(:user).order('updated_at DESC')
+    @tweet = Tweet.includes(:user).not_reply.order('updated_at DESC')
+    @users = User.all
+
+    if params[:reply_tweet_id]
+      @reply_tweet =Tweet.find(params[:reply_tweet_id])
+    end
   end
 
   def create
@@ -27,8 +32,14 @@ class TweetsController < ApplicationController
     redirect_to action: :index
   end
 
+  def destroy
+    tweet = Tweet.find(params[:id])
+    tweet.destroy
+    redirect_to action: :index
+  end
+
   private
   def input_content_param
-    params.require(:tweet).permit(:content)
+    params.require(:tweet).permit(:content, :reply_tweet_id)
   end
 end
