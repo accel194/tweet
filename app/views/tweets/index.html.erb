@@ -13,12 +13,12 @@
       </div>
       <div class="actions clearfix">
         <div class="alert">
-          <% if flash[:alert] %>
-            <% flash[:alert].each do |content| %>
-              <p class="alert"><%= content %></p>
-            <% end %>
-          <% end %>
-        </div>
+                  <% if flash[:alert] %>
+                    <% flash[:alert].each do |content| %>
+                      <p class="alert"><%= content %></p>
+                    <% end %>
+                  <% end %>
+                </div>
         <div class="post">
           <% if @input_content.persisted? || @reply_tweet %>
             <%= link_to root_path do %>
