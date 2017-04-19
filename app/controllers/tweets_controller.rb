@@ -3,6 +3,7 @@ class TweetsController < ApplicationController
     @input_content = params[:id] ? Tweet.find(params[:id]) : Tweet.new
     @tweet = Tweet.includes(:user).not_reply.order('updated_at DESC')
     @users = User.all
+    @tweets = Tweet.page(params[:page]).per(3)
 
     if params[:reply_tweet_id]
       @reply_tweet =Tweet.find(params[:reply_tweet_id])
@@ -16,7 +17,7 @@ class TweetsController < ApplicationController
     if tweet.valid?
       tweet.save!
     else
-      flash[:alert] = tweet.errors.full_contents
+      flash[:alert] = tweet.errors.full_messages
     end
     redirect_to action: :index
   end
@@ -25,7 +26,7 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     tweet.attributes = input_content_param
     if tweet.valid?
-      tweet.save?
+      tweet.save!
     else
       flash[:alert] = tweet.errors.full_contents
     end

@@ -28,6 +28,12 @@ gem 'devise'
 gem 'carrierwave'
 
 gem 'twitter-bootstrap-rails'
+
+gem 'kaminari'
+
+gem 'kaminari-bootstrap'
+
+gem 'ransack'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
