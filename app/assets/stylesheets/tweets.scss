@@ -1,0 +1,69 @@
+// Place all the styles related to the tweets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.logout_wrapper {
+  text-align: right;
+}
+
+.tweet_wrapper {
+  &.wrapper {
+    width: 700px;
+  }
+  .actions {
+    div {
+      &.alert {
+        float: left;
+      }
+      &.post {
+        float: right;
+      }
+    }
+  }
+
+  .tweet {
+    .per {
+      border-radius: 5px;
+      padding: 10px;
+      margin-top: 20px;
+
+      background-color: #DADADA;
+      &.mine {
+        background-color: #C1EFFF;
+      }
+      &.reply {
+        margin-top: 0px;
+      }
+
+      p {
+        margin: 0;
+      }
+      .icon {
+        display: inline-block;
+        width: 70px;
+        vertical-align: top;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      .content {
+        display: inline-block;
+        margin-left: 10px;
+        width: 500px;
+        vertical-align: top;
+        word-wrap: break-word;
+      }
+      .operation {
+        display: inline-block;
+        button {
+          margin-bottom: 3px;
+        }
+        button_to {
+          input.btn{
+            width: 50px;
+          }  
+        }
+      }
+    }
+  }
+}

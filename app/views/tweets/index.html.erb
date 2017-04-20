@@ -1,0 +1,40 @@
+<div class="wrapper tweet_wrapper">
+  <div class="input">
+    <%= form_for @input_content do |f| %>
+      <div class="form-group">
+        <%= f.label :content %>
+        <% if @input_content.persisted? %>
+          編集中
+        <% elsif @reply_tweet %>
+        <%= @reply_tweet.user.name %>の「<%= truncate(@reply_tweet.content, length: 7) %>」に返信
+        <% end %>
+        <br/>
+        <%= f.text_area :content, class: 'form-control', rows: 3 %>
+      </div>
+      <div class="actions clearfix">
+        <div class="alert">
+                  <% if flash[:alert] %>
+                    <% flash[:alert].each do |content| %>
+                      <p class="alert"><%= content %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+        <div class="post">
+          <% if @input_content.persisted? || @reply_tweet %>
+            <%= link_to root_path do %>
+              <%= button_tag 'Cancel', class: 'btn btn-default' %>
+            <% end %>
+          <% end %>
+          <%= f.submit 'Post', class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <%= f.hidden_field :reply_tweet_id, value: @reply_tweet.id if @reply_tweet %>
+    <% end %>
+  </div>
+  <div class="tweet">
+    <% @tweet.each do |t| %>
+      <%= render 'tweets/tweet', t: t %>
+    <% end %>
+  </div>
+</div>
+<%= paginate @tweets %>
